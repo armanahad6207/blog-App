@@ -33,16 +33,16 @@ function Header() {
           <AiOutlineSearch />
         </Button>
 
-        <div className="flex gap-2  items-center">
+        <div className="flex gap-2  items-center md:order-2">
           <Button
-            className=" shadow-md text-center w-12 h-9 "
+            className=" shadow-md hidden md:inline text-center w-12 h-9 "
             color="gray"
             pill
           >
             <FaMoon />
           </Button>
           <Link to="/sign-in">
-            <Button className="bg-gradient-to-r from-sky-700 to-blue-400">
+            <Button gradientDuoTone="greenToBlue" outline>
               SignIn
             </Button>
           </Link>
