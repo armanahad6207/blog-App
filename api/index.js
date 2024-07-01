@@ -14,12 +14,24 @@ mongoose
   });
 
 const app = express();
-
 app.use(express.json());
-
-app.use("/api/user", userRoute);
-app.use("/api/auth", authRoute);
 
 app.listen(3000, () => {
   console.log("server is running in Port 3000");
+});
+
+app.use("/api/user", userRoute);
+
+// signup route
+app.use("/api/auth", authRoute);
+
+//creat middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "internal server error";
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
 });
