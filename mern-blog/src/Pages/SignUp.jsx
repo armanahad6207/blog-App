@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Label, TextInput } from "flowbite-react";
-function SignUp() {
-  const handleChange = (e) => {};
 
+function SignUp() {
   return (
     <div className=" mt-[50px] sm:mt-[100px] max-w-[1000px] mx-auto">
       <div className="flex flex-col gap-5 px-[20px] sm:px-[25px] md:px-[40px] items-center md:flex-row">
@@ -28,12 +27,7 @@ function SignUp() {
             <form className="flex flex-col gap-4">
               <div>
                 <Label value="username" />
-                <TextInput
-                  type="text"
-                  placeholder="username"
-                  id="username"
-                  onChange={handleChange}
-                />
+                <TextInput type="text" placeholder="username" id="username" />
               </div>
               <div>
                 <Label value="email" />
@@ -41,7 +35,6 @@ function SignUp() {
                   type="email"
                   placeholder="user1@gmail.com"
                   id="email"
-                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -50,10 +43,11 @@ function SignUp() {
                   type="password"
                   placeholder="password"
                   id="password"
-                  onChange={handleChange}
                 />
               </div>
-              <Button gradientDuoTone="greenToBlue">Sign Up</Button>
+              <Button gradientDuoTone="greenToBlue" type="submit">
+                Sign Up
+              </Button>
             </form>
             <div className="flex gap-[10px]">
               <span> Have an Account?</span>
