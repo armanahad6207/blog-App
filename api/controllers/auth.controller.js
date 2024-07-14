@@ -48,13 +48,57 @@ export const Signin = async (req, res, next) => {
       return next(errorHandler(400, "invalid Password"));
     }
 
-    const token = jwt.sign({ userId: validUser._id }, "arman120");
+    const token = jwt.sign({ userId: validUser._id }, "arman@123");
 
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
       .cookie("access-token", token, { httpOnly: true })
       .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//googl auth
+export const Google = async (req, res, next) => {
+  const { email, name, photoUrl } = req.body;
+  try {
+    const user = await User.findOne({ email });
+
+    if (user) {
+      const token = jwt.sign({ id: user._id }, "arman@123");
+      const { password, ...rest } = user._doc;
+      res
+        .status(200)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    } else {
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random.toString(36).slice(-8);
+
+      const hashPassword = bcryptjs.hashSync(generatedPassword, 10);
+      const newUser = new User({
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(9).slice(-4),
+        email,
+        password: hashPassword,
+        profilePicture: photoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, "arman@123");
+      const { password, ...rest } = newUser._doc;
+      res
+        .status(200)
+        .cookie("access_token", token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    }
   } catch (error) {
     next(error);
   }

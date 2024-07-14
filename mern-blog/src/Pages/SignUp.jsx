@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
+import Goauth from "../Components/Goauth";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -106,6 +107,7 @@ function SignUp() {
                   "Sign Up"
                 )}
               </Button>
+              <Goauth />
             </form>
             <div className="flex gap-[10px]">
               <span> Have an Account?</span>

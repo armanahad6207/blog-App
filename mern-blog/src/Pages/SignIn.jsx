@@ -7,6 +7,7 @@ import {
   signInSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Goauth from "../Components/Goauth";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
@@ -102,6 +103,7 @@ function SignIn() {
                   "Sign In"
                 )}
               </Button>
+              <Goauth />
             </form>
             <div className="flex gap-[10px]">
               <span> Dont have an Account?</span>
